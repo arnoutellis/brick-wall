@@ -14,32 +14,159 @@
     body {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       background: linear-gradient(to bottom,
-        #5b9bd5 0%,
-        #87CEEB 45%,
-        #c8e8a0 45%,
-        #8B7355 55%,
+        #3a6186 0%,
+        #5b9bd5 40%,
+        #87CEEB 60%,
+        #c8e8a0 60.5%,
+        #8B7355 70%,
         #6b5230 100%
       );
-      font-family: 'Georgia', serif;
-      overflow: hidden;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      overflow-x: hidden;
     }
 
-    h1 {
-      font-size: 2rem;
-      color: #fff;
-      text-shadow: 1px 2px 6px rgba(0,0,0,0.4);
-      margin-bottom: 2.5rem;
-      letter-spacing: 3px;
-    }
+    /* ───── FORM VIEW ───── */
 
-    #scene {
+    #form-view {
       display: flex;
       flex-direction: column;
       align-items: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    #form-view h1 {
+      font-size: 2.6rem;
+      color: #fff;
+      text-shadow: 2px 3px 10px rgba(0,0,0,0.45);
+      margin-bottom: 0.4rem;
+      letter-spacing: 3px;
+    }
+
+    #form-view .subtitle {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    .form-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      max-width: 520px;
+      width: 90vw;
+    }
+
+    .form-card label {
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .input-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      letter-spacing: 2px;
+    }
+
+    .input-wrap input::placeholder {
+      color: rgba(255,255,255,0.4);
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .input-wrap input:focus {
+      border-color: rgba(255,255,255,0.7);
+      box-shadow: 0 0 20px rgba(255,255,255,0.15);
+    }
+
+    .input-wrap input.invalid {
+      border-color: #ff6b6b;
+      box-shadow: 0 0 16px rgba(255,80,80,0.3);
+      animation: shake 0.4s ease;
+    }
+
+    .error-msg {
+      color: #ff6b6b;
+      font-size: 0.85rem;
+      height: 1.2rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      font-weight: 600;
+    }
+
+    #build-btn {
+      width: 100%;
+      padding: 18px 24px;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #fff;
+      background: linear-gradient(135deg, #d4631a, #c04820, #a83818);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow:
+        0 6px 20px rgba(180, 60, 20, 0.45),
+        inset 0 1px 0 rgba(255,200,150,0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    #build-btn:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow:
+        0 10px 30px rgba(180, 60, 20, 0.55),
+        inset 0 1px 0 rgba(255,200,150,0.3);
+    }
+
+    #build-btn:active {
+      transform: translateY(1px) scale(0.99);
+    }
+
+    /* ───── WALL VIEW ───── */
+
+    #wall-view {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    #wall-view h2 {
+      font-size: 1.6rem;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+      margin-bottom: 1.8rem;
+      letter-spacing: 2px;
     }
 
     #wall-container {
@@ -94,144 +221,256 @@
     }
 
     #status {
-      margin-top: 28px;
-      font-size: 1.25rem;
+      margin-top: 22px;
+      font-size: 1.15rem;
       color: #fff;
       text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-      height: 2rem;
-      font-weight: bold;
+      height: 1.8rem;
+      font-weight: 700;
       letter-spacing: 2px;
     }
 
     #brick-count {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-top: 6px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 4px;
       height: 1.2rem;
       letter-spacing: 1px;
+    }
+
+    #back-btn {
+      margin-top: 2rem;
+      padding: 12px 32px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 1px;
+    }
+
+    #back-btn:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-1px);
+    }
+
+    /* ───── ANIMATIONS ───── */
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%      { transform: translateX(-8px); }
+      40%      { transform: translateX(8px); }
+      60%      { transform: translateX(-5px); }
+      80%      { transform: translateX(5px); }
     }
   </style>
 </head>
 <body>
-  <div id="scene">
-    <h1>🧱 BRICK WALL BUILDER</h1>
+
+  <!-- FORM VIEW -->
+  <div id="form-view">
+    <h1>🧱 WALL BUILDER</h1>
+    <p class="subtitle">How many bricks in your wall?</p>
+    <div class="form-card">
+      <label for="brick-input">Enter a number (1 &ndash; 100)</label>
+      <div class="input-wrap">
+        <input
+          id="brick-input"
+          type="number"
+          min="1"
+          max="100"
+          step="1"
+          placeholder="e.g. 24"
+          autocomplete="off"
+        >
+      </div>
+      <div class="error-msg" id="error-msg"></div>
+      <button id="build-btn">BOOOD BUILD IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITT</button>
+    </div>
+  </div>
+
+  <!-- WALL VIEW -->
+  <div id="wall-view">
+    <h2 id="wall-title"></h2>
     <div id="wall-container"></div>
     <div id="ground"></div>
-    <div id="status">Get ready...</div>
+    <div id="status"></div>
     <div id="brick-count"></div>
+    <button id="back-btn">BUILD AGAIN</button>
   </div>
 
   <script>
-    const BRICK_W  = 110;
-    const BRICK_H  = 44;
-    const MORTAR   = 8;
-    const ROWS     = 3;
-    const COLS     = 4;
-    const HALF     = (BRICK_W + MORTAR) / 2;
-
-    const container = document.getElementById('wall-container');
-    const ground    = document.getElementById('ground');
-    const statusEl  = document.getElementById('status');
-    const countEl   = document.getElementById('brick-count');
-
-    const totalW = COLS * BRICK_W + (COLS - 1) * MORTAR + HALF;
-    const totalH = ROWS * BRICK_H + (ROWS - 1) * MORTAR;
-
-    container.style.width  = totalW + 'px';
-    container.style.height = totalH + 'px';
-    ground.style.width     = totalW + 'px';
-
-    // row 0 = bottom, row ROWS-1 = top
-    function getBricks() {
-      const list = [];
-      for (let row = 0; row < ROWS; row++) {
-        const offset = row % 2 === 0 ? 0 : HALF;
-        const y = (ROWS - 1 - row) * (BRICK_H + MORTAR);
-        for (let col = 0; col < COLS; col++) {
-          list.push({ x: offset + col * (BRICK_W + MORTAR), y, row, col });
-        }
-      }
-      return list;
-    }
-
-    const brickDefs = getBricks();
-    let brickEls = [];
+    /* ─── DOM refs ─── */
+    const formView   = document.getElementById('form-view');
+    const wallView   = document.getElementById('wall-view');
+    const input      = document.getElementById('brick-input');
+    const buildBtn   = document.getElementById('build-btn');
+    const errorMsg   = document.getElementById('error-msg');
+    const wallTitle  = document.getElementById('wall-title');
+    const container  = document.getElementById('wall-container');
+    const ground     = document.getElementById('ground');
+    const statusEl   = document.getElementById('status');
+    const countEl    = document.getElementById('brick-count');
+    const backBtn    = document.getElementById('back-btn');
 
     const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-    function createBrickEls() {
-      container.innerHTML = '';
-      brickEls = [];
-      brickDefs.forEach(def => {
+    /* ─── Validation ─── */
+    function validate() {
+      const raw = input.value.trim();
+      if (raw === '') return { ok: false, msg: 'Please enter a number' };
+      const n = Number(raw);
+      if (!Number.isInteger(n)) return { ok: false, msg: 'Whole numbers only — no decimals' };
+      if (n < 1)   return { ok: false, msg: 'Minimum is 1' };
+      if (n > 100)  return { ok: false, msg: 'Maximum is 100' };
+      return { ok: true, value: n };
+    }
+
+    /* ─── Wall layout algorithm ─── */
+    function computeLayout(n) {
+      // Aim for a roughly 1.6:1 (w:h) ratio
+      let cols = Math.round(Math.sqrt(n * 1.6));
+      if (cols < 1) cols = 1;
+      if (cols > n) cols = n;
+      const rows = Math.ceil(n / cols);
+      return { rows, cols };
+    }
+
+    /* ─── Build brick positions ─── */
+    function getBrickPositions(n) {
+      const { rows, cols } = computeLayout(n);
+
+      // Scale brick size to fit in ~620px max width
+      const MAX_W     = 620;
+      const MORTAR    = Math.max(4, Math.round(8 - cols * 0.3));
+      const halfExtra = cols > 1 ? 0.5 : 0;
+      const brickW    = Math.min(110, Math.floor((MAX_W - (cols - 1 + halfExtra) * MORTAR) / (cols + halfExtra)));
+      const brickH    = Math.round(brickW * 0.4);
+      const halfOff   = (brickW + MORTAR) / 2;
+
+      const totalW = cols * brickW + (cols - 1) * MORTAR + (rows > 1 ? halfOff : 0);
+      const totalH = rows * brickH + (rows - 1) * MORTAR;
+
+      const list = [];
+      let placed = 0;
+
+      for (let row = 0; row < rows && placed < n; row++) {
+        const offset = row % 2 === 0 ? 0 : halfOff;
+        const y = (rows - 1 - row) * (brickH + MORTAR);
+        const bricksThisRow = Math.min(cols, n - placed);
+        // Center partial top row
+        const rowW = bricksThisRow * brickW + (bricksThisRow - 1) * MORTAR;
+        const xStart = (bricksThisRow < cols)
+          ? (totalW - rowW) / 2
+          : offset;
+
+        for (let col = 0; col < bricksThisRow; col++) {
+          list.push({
+            x: xStart + col * (brickW + MORTAR),
+            y,
+            row,
+            col
+          });
+          placed++;
+        }
+      }
+
+      return { list, brickW, brickH, totalW, totalH, rows, cols };
+    }
+
+    /* ─── Build animation ─── */
+    async function animateWall(n) {
+      const { list, brickW, brickH, totalW, totalH, rows, cols } = getBrickPositions(n);
+
+      wallTitle.textContent = `${n} brick${n > 1 ? 's' : ''} — ${cols} wide × ${rows} high`;
+
+      container.style.width  = totalW + 'px';
+      container.style.height = totalH + 'px';
+      ground.style.width     = (totalW + 20) + 'px';
+      container.innerHTML    = '';
+
+      // Speed: faster for many bricks
+      const delay = Math.max(40, Math.round(230 - n * 1.8));
+
+      const els = list.map(pos => {
         const el = document.createElement('div');
         el.className = 'brick';
         el.style.cssText = `
-          width:${BRICK_W}px;
-          height:${BRICK_H}px;
-          left:${def.x}px;
-          top:${def.y}px;
+          width:${brickW}px;
+          height:${brickH}px;
+          left:${pos.x}px;
+          top:${pos.y}px;
           opacity:0;
-          transform:translateY(-${totalH + 60}px) rotate(-5deg);
+          transform:translateY(-${totalH + 80}px) rotate(-4deg);
         `;
         container.appendChild(el);
-        brickEls.push(el);
+        return el;
       });
-    }
 
-    async function buildWall() {
       statusEl.textContent = 'Building the wall...';
-      createBrickEls();
 
-      for (let i = 0; i < brickEls.length; i++) {
-        countEl.textContent = `Brick ${i + 1} of ${brickEls.length}`;
-        const el = brickEls[i];
-        el.style.transition = 'transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.15s ease';
-        el.style.opacity    = '1';
-        el.style.transform  = 'translateY(0) rotate(0deg)';
-        await sleep(230);
+      for (let i = 0; i < els.length; i++) {
+        countEl.textContent = `Brick ${i + 1} of ${n}`;
+        const el = els[i];
+        el.style.transition = 'transform 0.36s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.14s ease';
+        el.style.opacity   = '1';
+        el.style.transform = 'translateY(0) rotate(0deg)';
+        await sleep(delay);
       }
 
-      countEl.textContent = '';
-      statusEl.textContent = '✅ Wall complete!';
-      await sleep(2200);
-    }
-
-    async function demolishWall() {
-      statusEl.textContent = '💥 Timber!';
       countEl.textContent  = '';
-
-      const fallPromises = brickEls.map((el, i) => {
-        const row   = brickDefs[i].row;
-        const delay = (ROWS - 1 - row) * 70 + Math.random() * 130;
-        const rot   = (Math.random() > 0.5 ? 1 : -1) * (25 + Math.random() * 65);
-        const xDrift = (Math.random() - 0.5) * 140;
-        const dur   = 0.5 + Math.random() * 0.45;
-
-        return new Promise(resolve => {
-          setTimeout(() => {
-            el.style.transition = `transform ${dur}s cubic-bezier(0.55, 0, 1, 0.45), opacity ${dur * 0.75}s ease-in`;
-            el.style.transform  = `translateY(${totalH + 300}px) translateX(${xDrift}px) rotate(${rot}deg)`;
-            el.style.opacity    = '0';
-            setTimeout(resolve, dur * 1000 + 250);
-          }, delay);
-        });
-      });
-
-      await Promise.all(fallPromises);
-      await sleep(700);
-      statusEl.textContent = 'Rebuilding...';
-      await sleep(400);
+      statusEl.textContent = '✅ Wall complete!';
     }
 
-    async function run() {
-      await sleep(600);
-      while (true) {
-        await buildWall();
-        await demolishWall();
+    /* ─── Events ─── */
+    buildBtn.addEventListener('click', () => {
+      const result = validate();
+      if (!result.ok) {
+        errorMsg.textContent = result.msg;
+        input.classList.add('invalid');
+        input.addEventListener('animationend', () => input.classList.remove('invalid'), { once: true });
+        return;
       }
-    }
+      errorMsg.textContent = '';
+      input.classList.remove('invalid');
+      formView.style.display = 'none';
+      wallView.style.display = 'flex';
+      animateWall(result.value);
+    });
 
-    run();
+    input.addEventListener('keydown', e => {
+      // Block decimal point and 'e'
+      if (e.key === '.' || e.key === 'e' || e.key === 'E' || e.key === '+' || e.key === '-') {
+        e.preventDefault();
+      }
+      if (e.key === 'Enter') buildBtn.click();
+    });
+
+    input.addEventListener('input', () => {
+      errorMsg.textContent = '';
+      input.classList.remove('invalid');
+    });
+
+    backBtn.addEventListener('click', () => {
+      wallView.style.display = 'none';
+      formView.style.display = 'flex';
+      formView.style.animation = 'none';
+      formView.offsetHeight; // trigger reflow
+      formView.style.animation = 'fadeIn 0.5s ease';
+      statusEl.textContent  = '';
+      countEl.textContent   = '';
+      container.innerHTML   = '';
+      input.value = '';
+      input.focus();
+    });
   </script>
 </body>
 </html>
